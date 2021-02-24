@@ -22,6 +22,10 @@ scl enable devtoolset-7 bash
 which gcc
 gcc --version
 
+fatal error: bits/getopt_core.h:
+Modify CO_main_basic.c:
+//#include <bits/getopt_core.h>
+#include <getopt.h>
 
 
 Follow this:
