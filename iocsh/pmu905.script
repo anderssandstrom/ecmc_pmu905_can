@@ -1,8 +1,8 @@
 ##############################################################################
-## Example: Demo of ecmc SocketCAN plugin
-## https://github.com/anderssandstrom/e3-ecmc_plugin_socketcan
 ##
-## The plugin exposes:
+## Example of a startup script for one pmu905 unit.
+## The e3-ecmc_plugin_socketcan plugin is used to inteface to canbus:
+##    https://github.com/anderssandstrom/e3-ecmc_plugin_socketcan
 ##
 
 ## Initiation:
@@ -12,7 +12,7 @@ epicsEnvSet("SCRIPTEXEC" ,"$(SCRIPTEXEC="iocshLoad")")
 
 require ecmccfg 6.3.0
 require calc 3.7.3
-require ecmc_plugin_socketcan master # do not require then loaded twice..
+require ecmc_plugin_socketcan master
 
 # run module startup.cmd (only needed at ESS  PSI auto call at require)
 $(ECMCCFG_INIT)$(SCRIPTEXEC) ${ecmccfg_DIR}startup.cmd, "IOC=$(IOC),ECMC_VER=6.3.0,MASTER_ID=-1"
@@ -30,8 +30,9 @@ epicsEnvUnset(ECMC_PLUGIN_FILNAME)
 epicsEnvUnset(ECMC_PLUGIN_CONFIG)
 
 ##############################################################################
-############# Configure CAN plugin:
-# Commands:
+############# Configure CANOpen plugin:
+
+# Add master device:
 #   ecmcCANOpenAddMaster -h
 #      Use ecmcCANOpenAddMaster(<name>, <node id>,....)
 #                <name>                     : Name of master device.
@@ -47,7 +48,7 @@ ecmcCANOpenAddPDO("reset",0,0x300,1,8,100000,0)  # READ
 dbLoadRecords(ecmcPluginSocketCAN_PDO_output.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=00,DEV_ID=0,suffix=PDO01-Reset_,source=reset,NELM=8")
 dbLoadRecords(../db/pmu905Reset.template, "P=${ECMC_PREFIX},CH_ID=00,PV_SUFFIX=PDO01-Reset_")
 
-
+# Add pmu905 device:
 #    ecmcCANOpenAddDevice -h
 #      Use ecmcCANOpenAddDevice(<name>, <node id>)
 #          <name>      : Name of device.
@@ -55,6 +56,7 @@ dbLoadRecords(../db/pmu905Reset.template, "P=${ECMC_PREFIX},CH_ID=00,PV_SUFFIX=P
 #
 ecmcCANOpenAddDevice("pmu905",3)
 
+# Add PDO:
 #     ecmcCANOpenAddPDO -h
 #       Use "ecmcCANOpenAddPDO(<name>, <node id>
 #           <name>            : Name of master device.
@@ -68,6 +70,7 @@ ecmcCANOpenAddPDO("status",3,0x183,2,8,100000,0)  # READ
 dbLoadRecords(ecmcPluginSocketCAN_PDO_input.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=03,DEV_ID=3,suffix=PDO01-Status_,source=status,NELM=8")
 dbLoadRecords(../db/pmu905Status.template, "P=${ECMC_PREFIX},CH_ID=03,PV_SUFFIX=PDO01-Status_")
 
+# Add SDO:
 #     ecmcCANOpenAddSDO -h
 #        Use ecmcCANOpenAddSDO(<name>, <node id>,.....)
 #           <name>            : Name of master device.
@@ -94,7 +97,6 @@ dbLoadRecords(../db/pmu905BasicConfig.template, "P=${ECMC_PREFIX},CH_ID=03,PV_SU
 ecmcConfigOrDie "Cfg.SetAppMode(1)"
 iocInit()
 dbl > pvs.log
-
 dbl ai > ai_pvs.log
 dbl bi > bi_pvs.log
 dbl waveform > wf_pvs.log
