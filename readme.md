@@ -52,6 +52,15 @@ $ ip link show can0
 $ ip addr
 ```
 
+### Start IOC
+
+Start ioc: 
+```
+cd iocsh
+iocsh.bash pmu905.script
+
+```
+
 ### monitor canbus with candump
 ```
 $ candump can0
