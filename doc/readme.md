@@ -764,7 +764,7 @@ data[03]: 0
 
 
 ## Set VrefOwr to 100
-caput IOC_TEST:CAN03-VrefPwrCmd 100
+caput IOC_TEST:CAN03-Ctrl-VrefPwrCmd 100
 
 NOT WORKING.. Will get the below???
 
@@ -782,7 +782,7 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 
 ## Set VdcCtrlCmd to 5000
-caput IOC_TEST:CAN03-VdcCtrlCmd 5000
+caput IOC_TEST:CAN03-Ctrl-VdcCtrlCmd 5000
 
 NOT WORKING.. Will get the below???
 
@@ -797,4 +797,10 @@ w 0x603 [8] 0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00
 writeDataStateMachine basicConfig
 STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
+
+# Reset all pmu905 devices
+caput IOC_TEST:CAN00-Ctrl-ResetAll 1
+
+w 0x300 [8] 0x02 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+
 
