@@ -92,5 +92,11 @@ dbLoadRecords(../db/pmu905BasicConfig.template, "P=${ECMC_PREFIX},CH_ID=03,PV_SU
 ############# Go to realtime:
 
 ecmcConfigOrDie "Cfg.SetAppMode(1)"
-iocInit
+iocInit()
 dbl > pvs.log
+
+dbl ai > ai_pvs.log
+dbl bi > bi_pvs.log
+dbl waveform > wf_pvs.log
+dbl calc > calc_pvs.log
+dbgrep  "*_"> worker_pvs.log
