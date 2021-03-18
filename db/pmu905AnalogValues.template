@@ -55,7 +55,7 @@ record(calc, "$(P)CAN${CH_ID}-Stat-V_TEMP_") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_TEMP") {
   field(DESC, "Analog Values: V_TEMP")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-V_TEMP_.VAL")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-V_TEMP_.VAL")
   field(EGU,  "degC")
 }
 
@@ -214,7 +214,7 @@ record(calc, "$(P)CAN${CH_ID}-Stat-AIR_INLET_") {
 record(ai,"$(P)CAN${CH_ID}-Stat-AIR_INLET") {
   field(DESC, "Analog Values: V_TEMP")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-AIR_INLET_.VAL")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-AIR_INLET_.VAL")
   field(EGU,  "degC")
 }
 
@@ -231,7 +231,7 @@ record(calc, "$(P)CAN${CH_ID}-Stat-AIR_OUTLET_") {
 record(ai,"$(P)CAN${CH_ID}-Stat-AIR_OUTLET") {
   field(DESC, "Analog Values: V_TEMP")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-AIR_OUTLET_.VAL")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-AIR_OUTLET_.VAL")
   field(EGU,  "degC")
 }
 

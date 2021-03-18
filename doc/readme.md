@@ -744,7 +744,7 @@ IOC_TEST:CAN03-VrefPwrCmd
 IOC_TEST:CAN03-VdcCtrlCmd
 
 ## Turn amplifier on
-caput IOC_TEST:CAN03-PowerOnCmd 1
+caput IOC_TEST:CAN03-Ctrl-PowerOn 1
 
 WRITEVALUE  basicConfig
 STATE = WRITE_REQ_TRANSFER  basicConfig
@@ -764,7 +764,7 @@ data[03]: 0
 
 
 ## Set VrefOwr to 100
-caput IOC_TEST:CAN03-Ctrl-VrefPwrCmd 100
+caput IOC_TEST:CAN03-Ctrl-VrefPwr 100
 
 NOT WORKING.. Will get the below???
 
@@ -782,7 +782,7 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 
 ## Set VdcCtrlCmd to 5000
-caput IOC_TEST:CAN03-Ctrl-VdcCtrlCmd 5000
+caput IOC_TEST:CAN03-Ctrl-VdcCtrl 5000
 
 NOT WORKING.. Will get the below???
 
