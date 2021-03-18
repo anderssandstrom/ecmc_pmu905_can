@@ -263,9 +263,10 @@ IOC_TEST:CAN03-SDO01-AnalogValues_
 IOC_TEST:CAN03-SDO02-BasicConfig_
 ```
 
-## CANOpen Raw data PVs
+## CANOpen Raw data PVs (interface to ecmc_plugin_socketcan)
 
 The arrays that are the link to the actual data (in ecmc_plugin_socketcan plugin);
+Should not be accessed directly.
 
 ```
 IOC_TEST:CAN00-PDO01-Reset_
