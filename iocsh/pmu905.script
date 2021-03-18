@@ -45,7 +45,7 @@ ecmcCANOpenAddMaster("ecmcCANOpenMaster",0,1000,1000,1000)
 # Send reset to all amplifiers from master on COB_ID 200
 ecmcCANOpenAddPDO("reset",0,0x300,1,8,100000,0)  # READ
 dbLoadRecords(ecmcPluginSocketCAN_PDO_output.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=00,DEV_ID=0,suffix=PDO01-Reset_,source=reset,NELM=8")
-dbLoadRecords(../db/pmu905Reset.template, "P=${ECMC_PREFIX},CH_ID=0,PV_SUFFIX=PDO01-Reset_")
+dbLoadRecords(../db/pmu905Reset.template, "P=${ECMC_PREFIX},CH_ID=00,PV_SUFFIX=PDO01-Reset_")
 
 
 #    ecmcCANOpenAddDevice -h

@@ -4,7 +4,7 @@
 record(bo,"$(P)CAN${CH_ID}-Ctrl-ResetAll") {  
   field(DESC, "Reset All pmu905")
   field(VAL,  "0")  
-  field(0NAM, "reset")
+  field(ONAM, "reset")
   field(ZNAM, "no reset")
   field(OUT,  "$(P)CAN${CH_ID}-ResetB0_.B1")  
   field(FLNK, "$(P)CAN${CH_ID}-ResetB0_.PROC")
