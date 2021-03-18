@@ -181,9 +181,9 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 ```
 
-### Set VrefOwr
+### Set VrefPwr
 
-Set VrefOwr to 100:
+Set VrefPwr to 100:
 ```
 caput IOC_TEST:CAN03-Ctrl-VrefPwr 100
 ```
