@@ -62,42 +62,6 @@ iocsh.bash pmu905.script
 
 ```
 
-### monitor canbus with candump
-```
-$ candump can0
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  703   [1]  05
-  can0  280   [0] 
-  can0  683   [4]  00 00 00 00
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  183   [8]  00 00 00 00 0B 40 04 20
-  can0  280   [0] 
-  can0  703   [1]  05
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  703   [1]  05
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  280   [0] 
-  
-  ...
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  703   [1]  05
-  can0  280   [0] 
-  can0  280   [0] 
-  can0  683   [4]  00 0NMT0 00 00 0B 40 04 20
-  can0  703   [1]  05
-  can0  280   [0] 
-  ..
-```
-
 # PVs
 
 ## Status PVs
@@ -294,4 +258,42 @@ IOC_TEST:CAN00-PDO01-Reset_
 IOC_TEST:CAN03-PDO01-Status_
 IOC_TEST:CAN03-SDO01-AnalogValues_
 IOC_TEST:CAN03-SDO02-BasicConfig_
+```
+
+# Troubleshooting
+
+## monitor canbus with candump
+
+```
+$ candump can0
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  703   [1]  05
+  can0  280   [0] 
+  can0  683   [4]  00 00 00 00
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  183   [8]  00 00 00 00 0B 40 04 20
+  can0  280   [0] 
+  can0  703   [1]  05
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  703   [1]  05
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  280   [0] 
+  ...
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  703   [1]  05
+  can0  280   [0] 
+  can0  280   [0] 
+  can0  683   [4]  00 0NMT0 00 00 0B 40 04 20
+  can0  703   [1]  05
+  can0  280   [0] 
+  ..
 ```
