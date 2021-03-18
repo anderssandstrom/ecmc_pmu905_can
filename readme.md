@@ -9,8 +9,9 @@ You can find documentation here:
 
   * [PMU905 Interface](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
 
-2. In the e3-ecmc_plugin_socketcan plugin (doc dir):
-https://github.com/anderssandstrom/e3-ecmc_plugin_socketcan/tree/master/docs
+2. In the e3-ecmc_plugin_socketcan plugin:
+  
+  * https://github.com/anderssandstrom/e3-ecmc_plugin_socketcan/blob/master/README.md
 
 
 # Install
