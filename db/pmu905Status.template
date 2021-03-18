@@ -1,0 +1,264 @@
+
+# Status PV (8 byte waveform): IOC_TEST:CAN${CH_ID}-PDO01-Array
+
+# Byte 0
+record(mbbiDirect,"$(P)CAN${CH_ID}-StatB0_"){
+  field(DESC, "mbbiDirect")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[0] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SortLine1.PROC")
+}
+
+# Bit 0:2 Sorting line 1
+record(bi,"$(P)CAN${CH_ID}-Stat-SortLine1"){
+  field(DESC, "Sorting line 1 state")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB0_.B2")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SortLine2.PROC")
+}
+
+# Bit 0:2 Sorting line 2
+record(bi,"$(P)CAN${CH_ID}-Stat-SortLine2"){
+  field(DESC, "Sorting line 2 state")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB0_.B3")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SwUpdate.PROC")
+}
+
+# Bit 0:5 Software update running
+record(bi,"$(P)CAN${CH_ID}-Stat-SwUpdate"){
+  field(DESC, "Software update running")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB0_.B5")
+  field(ZNAM, "idle")
+  field(ONAM, "Software updating")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SwHwAlrm")
+}
+
+# Bit 0:6 Software Hardware missmatch alarm
+record(bi,"$(P)CAN${CH_ID}-Stat-SwHwAlrm"){
+  field(DESC, "SW/HW missmatch")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB0_.B6")
+  field(ZNAM, "OK")
+  field(ONAM, "SW/HW missmatch")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "")
+}
+
+# Byte 1..2 reserved
+
+# Byte 3:
+record(mbbiDirect,"$(P)CAN${CH_ID}-StatB3_"){
+  field(DESC, "mbbiDirect")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[3] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-FREQ_FAIL.PROC")
+}
+
+# Bit 3:0 FREQ_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-FREQ_FAIL"){
+  field(DESC, "FREQ_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B0")
+  field(ZNAM, "OK")
+  field(ONAM, "FREQ_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-REDUCED_PWR.PROC")
+}
+
+# Bit 3:1 REDUCED_PWR
+record(bi,"$(P)CAN${CH_ID}-Stat-REDUCED_PWR"){
+  field(DESC, "REDUCED_PWR")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B1")
+  field(ZNAM, "OK")
+  field(ONAM, "REDUCED_PWR")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MINOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-PSU_RES.PROC")
+}
+
+# Bit 3:2 PSU_RES
+record(bi,"$(P)CAN${CH_ID}-Stat-PSU_RES"){
+  field(DESC, "PSU_RES")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B2")
+  field(ZNAM, "OK")
+  field(ONAM, "PSU_RES")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MINOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-FAN_FAIL.PROC")
+}
+
+# Bit 3:3 FAN_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-FAN_FAIL"){
+  field(DESC, "FAN_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B3")
+  field(ZNAM, "OK")
+  field(ONAM, "FAN_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SUPPLY_FAIL_1.PROC")
+}
+
+# Bit 3:4 Reserved
+
+# Bit 3:5 SUPPLY_FAIL_1
+record(bi,"$(P)CAN${CH_ID}-Stat-SUPPLY_FAIL_1"){
+  field(DESC, "SUPPLY_FAIL_1")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B5")
+  field(ZNAM, "OK")
+  field(ONAM, "SUPPLY_FAIL_1")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SUPPLY_FAIL_2.PROC")
+}
+
+# Bit 3:6 SUPPLY_FAIL_2
+record(bi,"$(P)CAN${CH_ID}-Stat-SUPPLY_FAIL_2"){
+  field(DESC, "SUPPLY_FAIL_2")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B6")
+  field(ZNAM, "OK")
+  field(ONAM, "SUPPLY_FAIL_1")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-PWR_CALIBRATED")
+}
+
+# Bit 3:7 PWR_CALIBRATED
+record(bi,"$(P)CAN${CH_ID}-Stat-PWR_CALIBRATED"){
+  field(DESC, "PWR_CALIBRATED")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB3_.B7")
+  field(ZNAM, "NOT_PWR_CALIBRATED")
+  field(ONAM, "PWR_CALIBRATED")
+  field(ZSV,  "MAJOR")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "")
+}
+
+# Byte 4:
+record(mbbiDirect,"$(P)CAN${CH_ID}-StatB4_"){
+  field(DESC, "mbbiDirect")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[3] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-DET_INHIB_MON.PROC")
+}
+
+# Bit 4:0 DET_INHIB_MON
+# No clue what this is... Need to check to make the correct settings
+record(bi,"$(P)CAN${CH_ID}-Stat-DET_INHIB_MON"){
+  field(DESC, "FREQ DET_INHIB_MON")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B0")
+  field(ZNAM, "NOT_DET_INHIB_MON")
+  field(ONAM, "DET_INHIB_MON")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-AMPLIFIER_ON.PROC")
+}
+
+# Bit 4:1 AMPLIFIER_ON
+record(bi,"$(P)CAN${CH_ID}-Stat-AMPLIFIER_ON"){
+  field(DESC, "AMPLIFIER_ON")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B1")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-RF_IN_FAIL.PROC")
+}
+
+# Bit 4:2 RF_IN_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-RF_IN_FAIL"){
+  field(DESC, "RF_IN_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B2")
+  field(ZNAM, "RF_IN_OK")
+  field(ONAM, "RF_IN_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-MUTE.PROC")
+}
+
+# Bit 4:3 MUTE
+# Same as LED on unit I guess so just status
+record(bi,"$(P)CAN${CH_ID}-Stat-MUTE"){
+  field(DESC, "RF_IN_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B3")
+  field(ZNAM, "NO_MUTE")
+  field(ONAM, "MUTE")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-REFELCTION.PROC")
+}
+
+# Bit 4:4 REFELCTION
+# Same as LED on unit I guess so just status
+record(bi,"$(P)CAN${CH_ID}-Stat-REFELCTION"){
+  field(DESC, "REFELCTION")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B4")
+  field(ZNAM, "NO_REFELCTION")
+  field(ONAM, "REFELCTION")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-RF_POWER_FAIL.PROC")
+}
+
+# Bit 4:5 RF_POWER_FAIL
+# Same as LED on unit I guess
+record(bi,"$(P)CAN${CH_ID}-Stat-RF_POWER_FAIL"){
+  field(DESC, "RF_POWER_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B5")
+  field(ZNAM, "OK")
+  field(ONAM, "RF_POWER_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-REFLECTION_INT.PROC")
+}
+
+# Bit 4:6 REFLECTION_INT
+record(bi,"$(P)CAN${CH_ID}-Stat-REFLECTION_INT"){
+  field(DESC, "REFLECTION_INT")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B5")
+  field(ZNAM, "NO_REFLECTION_INT")
+  field(ONAM, "REFLECTION_INT")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-TEMP_FAIL.PROC")
+}
+
+# Bit 4:7 TEMP_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-TEMP_FAIL"){
+  field(DESC, "TEMP_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B5")
+  field(ZNAM, "OK")
+  field(ONAM, "TEMP_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-.PROC")
+}
+
+

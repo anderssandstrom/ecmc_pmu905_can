@@ -81,70 +81,33 @@ record(calc, "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB4_") {
   field(INPA, "$(P)CAN${CH_ID}-VdcCtrlCmd.VAL")
   field(FLNK, "$(P)CAN${CH_ID}-BasicConfigPackArray_.PROC")
 }
-#
-### COLLECT all bytes
-#record(acalcout, "$(P)CAN${CH_ID}-BasicConfigCalc_") {  
-#  field(DESC, "Calc to gather data from other records")  
-#  field(NELM, "7")
-#  #field(CALC, "A>>0;B>>1;C>>2;D>>3;E>>4;0>>5;0>>6;")   # Fill to 7 bytes
-#  #field(CALC, "AA+ARR([A,B,C,D,E,0,0]);")                  # Fill to 7 bytes
-#  #field(CALC, "AA:=ARR(A,B,C,D,E,0,0)")                  # Fill to 7 bytes
-#  #field(CALC, "CAT(AA[0,1],A);CAT(AA[0,2],B)")                  # Fill to 7 bytes
-#  #field(CALC, "AA+ARR(A,B,C,D,E,0,0)")                  # Fill to 7 bytes
-#  #field(CALC, "ARR(A,B,C,D,E,0,0);")                  # Fill to 7 bytes
-#  #field(CALC, "ARR([A,B,C,D,E,0,0]);")                  # Fill to 7 bytes
-#  #field(CALC, "AA[0]=A;AA[1]=B;AA[2]=C;AA[3]=D;AA[4]=E;AA[5]=0;AA[6]=0;AA*1;")                     # Fill to 7 bytes
-#  #field(CALC, "AA[0]:=A;AA[1]:=B;AA[2]:=C;AA[3]:=D;AA[4]:=E;AA[5]:=0;AA[6]:=0;AA;")                     # Fill to 7 bytes
-#  #field(CALC, "AA[0]:=A;AA[1]:=B;AA[2]:=C;AA[3]:=D;")                     # Fill to 7 bytes
-#  #field(CALC, "AA:=IX;AA;")                     # Fill to 7 bytes
-#  field(INPA, "$(P)CAN${CH_ID}-BasicConfigB0_.VAL")     # Byte 0
-#  field(INPB, "$(P)CAN${CH_ID}-VrefPwrCmdCalcB1_.VAL")  # Byte 1
-#  field(INPC, "$(P)CAN${CH_ID}-VrefPwrCmdCalcB2_.VAL")  # Byte 2
-#  field(INPD, "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB3_.VAL")  # Byte 3
-#  field(INPE, "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB4_.VAL")  # Byte 4
-#  #field(INAA, "$(P)CAN${CH_ID}-SDO02-BasicConfig")      # Whole array
-#  field(OUT,  "$(P)CAN${CH_ID}-SDO02-BasicConfig")            # Send the data
-#  field(FLNK, "$(P)CAN${CH_ID}-SDO02-BasicConfig.PROC")       # Send the data
-#}
-#
-# Dummy 0 array
-#record(waveform,"$(P)CAN${CH_ID}-BasicConfigDummy_"){
-#  field(DESC, "DUMMY ARRAY")  
-#  field(NELM, "7") 
-#  field(PINI, "YES")
-#  field(VAL,  "0")
-#}
-#
 
-record(aSub,  "$(P)CAN${CH_ID}-BasicConfigPackArray_") {
-  field(INAM,  "ecmcWriteArrayUint8ElementsInit")
-  field(SNAM,  "ecmcWriteArrayUint8Elements")
+record(aSub,   "$(P)CAN${CH_ID}-BasicConfigPackArray_") {
+  field(INAM,  "ecmcByteToArrayInit")
+  field(SNAM,  "ecmcByteToArray")
   field(FTA,   "UCHAR")
   field(NOA,   "1")
-  field(INPA,  "7")
+  field(INPA,  "$(P)CAN${CH_ID}-BasicConfigB0_.VAL")    # Byte 0
   field(FTB,   "UCHAR")
   field(NOB,   "1")
-  field(INPB,  "$(P)CAN${CH_ID}-BasicConfigB0_.VAL")    # Byte 0
+  field(INPB,  "$(P)CAN${CH_ID}-VrefPwrCmdCalcB1_.VAL") # Byte 1
   field(FTC,   "UCHAR")
   field(NOC,   "1")
-  field(INPC,  "$(P)CAN${CH_ID}-VrefPwrCmdCalcB1_.VAL") # Byte 1
+  field(INPC,  "$(P)CAN${CH_ID}-VrefPwrCmdCalcB2_.VAL") # Byte 2
   field(FTD,   "UCHAR")
   field(NOD,   "1")
-  field(INPD,  "$(P)CAN${CH_ID}-VrefPwrCmdCalcB2_.VAL") # Byte 2
+  field(INPD,  "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB3_.VAL") # Byte 3
   field(FTE,   "UCHAR")
   field(NOE,   "1")
-  field(INPE,  "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB3_.VAL") # Byte 3
+  field(INPE,  "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB4_.VAL") # Byte 4
   field(FTF,   "UCHAR")
   field(NOF,   "1")
-  field(INPF,  "$(P)CAN${CH_ID}-VdcCtrlCmdCalcB4_.VAL") # Byte 4
+  field(INPF,  "0")                                     # Byte 5
   field(FTG,   "UCHAR")
   field(NOG,   "1")
-  field(INPG,  "0")                                     # Byte 5
-  field(FTH,   "UCHAR")
-  field(NOH,   "1")
-  field(INPH,  "0")                                     # Byte 6
+  field(INPG,  "0")                                     # Byte 6
   field(FTVA,  "UCHAR")
   field(OUTA,  "$(P)CAN${CH_ID}-SDO02-BasicConfig")
-  field(NOVA,  "7")
-  field(FLNK, "$(P)CAN${CH_ID}-SDO02-BasicConfig.PROC") # Send the data
+  field(NOVA,  "7")                                     # 7 bytes (0..6 corresponds to input A..G)
+  field(FLNK,  "$(P)CAN${CH_ID}-SDO02-BasicConfig.PROC") # Send the data
 }
