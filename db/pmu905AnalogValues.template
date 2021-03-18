@@ -3,7 +3,7 @@
 record(ai,"$(P)CAN${CH_ID}-Stat-PWR_A") {  
   field(DESC, "Analog Values: PWR_A")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[0] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[0] CP")
   field(EGU,  "mV")
 }
 
@@ -12,7 +12,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-PWR_A") {
 record(ai,"$(P)CAN${CH_ID}-Stat-PWR_B") {
   field(DESC, "Analog Values: PWR_B")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[1] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[1] CP")
   field(EGU,  "mV")
 }
 
@@ -21,7 +21,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-PWR_B") {
 record(ai,"$(P)CAN${CH_ID}-Stat-PWR_OUT") {
   field(DESC, "Analog Values: PWR_OUT")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[2] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[2] CP")
   field(EGU,  "mV")
 }
 
@@ -30,7 +30,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-PWR_OUT") {
 record(ai,"$(P)CAN${CH_ID}-Stat-REFL_OUT") {
   field(DESC, "Analog Values: REFL_OUT")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[3] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[3] CP")
   field(EGU,  "mV")
 }
 
@@ -39,7 +39,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-REFL_OUT") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_REG") {
   field(DESC, "Analog Values: V_REG")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[4] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[4] CP")
   field(EGU,  "mV")
 }
 
@@ -48,7 +48,7 @@ record(calc, "$(P)CAN${CH_ID}-Stat-V_TEMP_") {
   field(DESC, "Analog Values: V_TEMP")
   field(PINI, "1")
   field(CALC, "A*0.1")
-  field(INPA, "$(P)CAN${CH_ID}-SDO01-Array.[5] CP")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[5] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-V_TEMP.PROC")
 }
 
@@ -64,7 +64,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_TEMP") {
 record(ai,"$(P)CAN${CH_ID}-Stat-I_DRV") {
   field(DESC, "Analog Values: I_DRV")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[6] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[6] CP")
   field(EGU,  "A")
 }
 
@@ -73,7 +73,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_DRV") {
 record(ai,"$(P)CAN${CH_ID}-Stat-I_PRE") {
   field(DESC, "Analog Values: I_PRE")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[7] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[7] CP")
   field(EGU,  "mA")
 }
 
@@ -82,7 +82,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_PRE") {
 record(ai,"$(P)CAN${CH_ID}-Stat-I_1A") {
   field(DESC, "Analog Values: I_1A")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[8] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[8] CP")
   field(EGU,  "A")
 }
 
@@ -91,7 +91,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_1A") {
 record(ai,"$(P)CAN${CH_ID}-Stat-I_2A") {
   field(DESC, "Analog Values: I_2A")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[9] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[9] CP")
   field(EGU,  "A")
 }
 
@@ -104,7 +104,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_2A") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_REFL_SAVE") {  
   field(DESC, "Analog Values: V_REFL_SAVE")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[11] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[11] CP")
   field(EGU,  "mV")
 }
 
@@ -116,7 +116,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_REFL_SAVE") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_PLUSMON") {  
   field(DESC, "Analog Values: V_PLUSMON")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[13] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[13] CP")
   field(EGU,  "V")
 }
 
@@ -125,7 +125,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_PLUSMON") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_I_DC") {  
   field(DESC, "Analog Values: V_I_DC")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[14] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[14] CP")
   field(EGU,  "A")
 }
 
@@ -138,7 +138,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_I_DC") {
 record(ai,"$(P)CAN${CH_ID}-Stat-I_1B") {
   field(DESC, "Analog Values: I_1B")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[16] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[16] CP")
   field(EGU,  "A")
 }
 
@@ -147,7 +147,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_1B") {
 record(ai,"$(P)CAN${CH_ID}-Stat-I_2B") {
   field(DESC, "Analog Values: I_2B")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[17] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[17] CP")
   field(EGU,  "A")
 }
 
@@ -160,7 +160,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_2B") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_12V_MON") {
   field(DESC, "Analog Values: V_12V_MON")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[19] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[19] CP")
   field(EGU,  "mV")
 }
 
@@ -169,7 +169,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_12V_MON") {
 record(ai,"$(P)CAN${CH_ID}-Stat-VREF_PWR_OPV") {
   field(DESC, "Analog Values: VREF_PWR_OPV")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[20] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[20] CP")
   field(EGU,  "mV")
 }
 
@@ -178,7 +178,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-VREF_PWR_OPV") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_AUX_IN") {
   field(DESC, "Analog Values: V_AUX_IN")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[21] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[21] CP")
   field(EGU,  "V")
 }
 
@@ -187,7 +187,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_AUX_IN") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_5V_ACB") {
   field(DESC, "Analog Values: V_5V_ACB")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[22] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[22] CP")
   field(EGU,  "mV")
 }
 
@@ -196,7 +196,7 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_5V_ACB") {
 record(ai,"$(P)CAN${CH_ID}-Stat-V_3V5") {
   field(DESC, "Analog Values: V_3V5")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-SDO01-Array.[23] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[23] CP")
   field(EGU,  "mV")
 }
 
@@ -207,7 +207,7 @@ record(calc, "$(P)CAN${CH_ID}-Stat-AIR_INLET_") {
   field(DESC, "Analog Values: AIR_INLET_")
   field(PINI, "1")
   field(CALC, "A*0.1")
-  field(INPA, "$(P)CAN${CH_ID}-SDO01-Array.[24] CP")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[24] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-AIR_INLET.PROC")
 }
 
@@ -224,7 +224,7 @@ record(calc, "$(P)CAN${CH_ID}-Stat-AIR_OUTLET_") {
   field(DESC, "Analog Values: AIR_OUTLET_")
   field(PINI, "1")
   field(CALC, "A*0.1")
-  field(INPA, "$(P)CAN${CH_ID}-SDO01-Array.[25] CP")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[25] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-AIR_OUTLET.PROC")
 }
 

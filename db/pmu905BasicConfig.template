@@ -107,7 +107,7 @@ record(aSub,   "$(P)CAN${CH_ID}-BasicConfigPackArray_") {
   field(NOG,   "1")
   field(INPG,  "0")                                     # Byte 6
   field(FTVA,  "UCHAR")
-  field(OUTA,  "$(P)CAN${CH_ID}-SDO02-BasicConfig")
+  field(OUTA,  "$(P)CAN${CH_ID}-${PV_SUFFIX}")
   field(NOVA,  "7")                                     # 7 bytes (0..6 corresponds to input A..G)
-  field(FLNK,  "$(P)CAN${CH_ID}-SDO02-BasicConfig.PROC") # Send the data
+  field(FLNK,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.PROC") # Send the data
 }

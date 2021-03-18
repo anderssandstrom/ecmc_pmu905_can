@@ -1,11 +1,11 @@
 
-# Status PV (8 byte waveform): IOC_TEST:CAN${CH_ID}-PDO01-Array
+# Status PV (8 byte waveform): IOC_TEST:CAN${CH_ID}-${PV_SUFFIX}
 
 # Byte 0
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB0_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[0] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[0] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-SortLine1.PROC")
 }
 
@@ -68,7 +68,7 @@ record(bi,"$(P)CAN${CH_ID}-Stat-SwHwAlrm"){
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB3_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[3] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[3] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-FREQ_FAIL.PROC")
 }
 
@@ -161,7 +161,7 @@ record(bi,"$(P)CAN${CH_ID}-Stat-PWR_CALIBRATED"){
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB4_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[4] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[4] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-DET_INHIB_MON.PROC")
 }
 
@@ -268,7 +268,7 @@ record(bi,"$(P)CAN${CH_ID}-Stat-TEMP_FAIL"){
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB5_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[5] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[5] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-TEMP_FAIL_INT.PROC")
 }
 
@@ -372,7 +372,7 @@ record(bi,"$(P)CAN${CH_ID}-Stat-AC_OK_2"){
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB6_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[6] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[6] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-FAULT.PROC")
 }
 
@@ -455,7 +455,7 @@ record(bi,"$(P)CAN${CH_ID}-Stat-REGULATION_FAIL"){
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB7_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[7] CP")
+  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[7] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-INT_FAIL.PROC")
 }
 
