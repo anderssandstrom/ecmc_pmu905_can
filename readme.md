@@ -1,6 +1,15 @@
 
 # PMU 905
-For more docs/info look in the e3-ecmc_plugin_socketcan plugin.
+
+You can find documentation here:
+
+1. The doc directory of this repo: 
+  
+  * [PMU905 Report](doc/pmu905/Design_Report_v02.pdf)
+
+  * [PMU905 Interface](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
+
+2. In the e3-ecmc_plugin_socketcan plugin (doc dir)
 
 # Install
 If you use a kvaser usb can interface you need to install their cansocket driver.
