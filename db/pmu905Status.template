@@ -9,6 +9,8 @@ record(mbbiDirect,"$(P)CAN${CH_ID}-StatB0_"){
   field(FLNK, "$(P)CAN${CH_ID}-Stat-SortLine1.PROC")
 }
 
+# Bit 0:0..0..1 Reserved
+
 # Bit 0:2 Sorting line 1
 record(bi,"$(P)CAN${CH_ID}-Stat-SortLine1"){
   field(DESC, "Sorting line 1 state")
@@ -33,6 +35,8 @@ record(bi,"$(P)CAN${CH_ID}-Stat-SortLine2"){
   field(FLNK, "$(P)CAN${CH_ID}-Stat-SwUpdate.PROC")
 }
 
+# Bit 0:4 Reserved
+
 # Bit 0:5 Software update running
 record(bi,"$(P)CAN${CH_ID}-Stat-SwUpdate"){
   field(DESC, "Software update running")
@@ -53,9 +57,10 @@ record(bi,"$(P)CAN${CH_ID}-Stat-SwHwAlrm"){
   field(ZNAM, "OK")
   field(ONAM, "SW/HW missmatch")
   field(ZSV,  "NO_ALARM")
-  field(OSV,  "MAJOR")
-  field(FLNK, "")
+  field(OSV,  "MAJOR")  
 }
+
+# Bit 0:7 Reserved
 
 # Byte 1..2 reserved
 
@@ -150,21 +155,20 @@ record(bi,"$(P)CAN${CH_ID}-Stat-PWR_CALIBRATED"){
   field(ONAM, "PWR_CALIBRATED")
   field(ZSV,  "MAJOR")
   field(OSV,  "NO_ALARM")
-  field(FLNK, "")
 }
 
 # Byte 4:
 record(mbbiDirect,"$(P)CAN${CH_ID}-StatB4_"){
   field(DESC, "mbbiDirect")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[3] CP")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[4] CP")
   field(FLNK, "$(P)CAN${CH_ID}-Stat-DET_INHIB_MON.PROC")
 }
 
 # Bit 4:0 DET_INHIB_MON
 # No clue what this is... Need to check to make the correct settings
 record(bi,"$(P)CAN${CH_ID}-Stat-DET_INHIB_MON"){
-  field(DESC, "FREQ DET_INHIB_MON")
+  field(DESC, "DET_INHIB_MON")
   field(PINI, "$(PINI=1)")
   field(INP,  "$(P)CAN${CH_ID}-StatB4_.B0")
   field(ZNAM, "NOT_DET_INHIB_MON")
@@ -241,7 +245,7 @@ record(bi,"$(P)CAN${CH_ID}-Stat-RF_POWER_FAIL"){
 record(bi,"$(P)CAN${CH_ID}-Stat-REFLECTION_INT"){
   field(DESC, "REFLECTION_INT")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B5")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B6")
   field(ZNAM, "NO_REFLECTION_INT")
   field(ONAM, "REFLECTION_INT")
   field(ZSV,  "NO_ALARM")
@@ -253,12 +257,277 @@ record(bi,"$(P)CAN${CH_ID}-Stat-REFLECTION_INT"){
 record(bi,"$(P)CAN${CH_ID}-Stat-TEMP_FAIL"){
   field(DESC, "TEMP_FAIL")
   field(PINI, "$(PINI=1)")
-  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B5")
+  field(INP,  "$(P)CAN${CH_ID}-StatB4_.B7")
   field(ZNAM, "OK")
   field(ONAM, "TEMP_FAIL")
   field(ZSV,  "NO_ALARM")
   field(OSV,  "MAJOR")
-  field(FLNK, "$(P)CAN${CH_ID}-Stat-.PROC")
 }
 
+# Byte 5:
+record(mbbiDirect,"$(P)CAN${CH_ID}-StatB5_"){
+  field(DESC, "mbbiDirect")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[5] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-TEMP_FAIL_INT.PROC")
+}
 
+# Bit 5:0 TEMP_FAIL_INT
+record(bi,"$(P)CAN${CH_ID}-Stat-TEMP_FAIL_INT"){
+  field(DESC, "TEMP_FAIL_INT")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B0")
+  field(ZNAM, "OK")
+  field(ONAM, "TEMP_FAIL_INT")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-PA_FAIL.PROC")
+}
+
+# Bit 5:1 PA_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-PA_FAIL"){
+  field(DESC, "PA_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B1")
+  field(ZNAM, "OK")
+  field(ONAM, "PA_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-DRV_FAIL.PROC")
+}
+
+# Bit 5:2 DRV_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-DRV_FAIL"){
+  field(DESC, "DRV_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B2")
+  field(ZNAM, "OK")
+  field(ONAM, "DRV_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-TRANSISTOR_FAIL.PROC")
+}
+
+# Bit 5:3 TRANSISTOR_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-TRANSISTOR_FAIL"){
+  field(DESC, "TRANSISTOR_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B3")
+  field(ZNAM, "OK")
+  field(ONAM, "TRANSISTOR_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-PEAK_AV.PROC")
+}
+
+# Bit 5:4 PEAK_AV
+record(bi,"$(P)CAN${CH_ID}-Stat-PEAK_AV"){
+  field(DESC, "PEAK_AV")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B4")
+  field(ZNAM, "OK")
+  field(ONAM, "PEAK_AV")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-RF_INHIB.PROC")
+}
+
+# Bit 5:5 RF_INHIB
+# Alarm?
+record(bi,"$(P)CAN${CH_ID}-Stat-RF_INHIB"){
+  field(DESC, "RF_INHIB")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B5")
+  field(ZNAM, "OK")
+  field(ONAM, "RF_INHIB")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-AC_OK_1.PROC")
+}
+
+# Bit 5:6 AC_OK_1
+record(bi,"$(P)CAN${CH_ID}-Stat-AC_OK_1"){
+  field(DESC, "AC_OK_1")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B6")
+  field(ZNAM, "NOT_AC_OK_1")
+  field(ONAM, "AC_OK_1")
+  field(ZSV,  "MAJOR")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-AC_OK_2.PROC")
+}
+
+# Bit 5:7 AC_OK_2
+record(bi,"$(P)CAN${CH_ID}-Stat-AC_OK_2"){
+  field(DESC, "AC_OK_2")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB5_.B7")
+  field(ZNAM, "NOT_AC_OK_2")
+  field(ONAM, "AC_OK_2")
+  field(ZSV,  "MAJOR")
+  field(OSV,  "NO_ALARM")
+}
+
+# Byte 6:
+record(mbbiDirect,"$(P)CAN${CH_ID}-StatB6_"){
+  field(DESC, "mbbiDirect")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[6] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-FAULT.PROC")
+}
+
+# Bit 6:0 Reserved
+
+# Bit 6:1 FAULT
+record(bi,"$(P)CAN${CH_ID}-Stat-FAULT"){
+  field(DESC, "FAULT")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB6_.B1")
+  field(ZNAM, "OK")
+  field(ONAM, "FAULT")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-DC_OK_1.PROC")
+}
+
+# Bit 6:2 DC_OK_1
+record(bi,"$(P)CAN${CH_ID}-Stat-DC_OK_1"){
+  field(DESC, "DC_OK_1")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB6_.B2")
+  field(ZNAM, "NOT_DC_OK_1")
+  field(ONAM, "DC_OK_1")
+  field(ZSV,  "MAJOR")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-DC_OK_2.PROC")
+}
+
+# Bit 6:3 DC_OK_2
+record(bi,"$(P)CAN${CH_ID}-Stat-DC_OK_2"){
+  field(DESC, "DC_OK_2")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB6_.B3")
+  field(ZNAM, "NOT_DC_OK_2")
+  field(ONAM, "DC_OK_2")
+  field(ZSV,  "MAJOR")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-DC_FAIL.PROC")
+}
+
+# Bit 6:4 Reserved
+
+# Bit 6:5 DC_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-DC_FAIL"){
+  field(DESC, "DC_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB6_.B5")
+  field(ZNAM, "OK")
+  field(ONAM, "DC_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SUPPLY_FAIL.PROC")
+}
+
+# Bit 6:6 SUPPLY_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-SUPPLY_FAIL"){
+  field(DESC, "SUPPLY_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB6_.B6")
+  field(ZNAM, "OK")
+  field(ONAM, "SUPPLY_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-REGULATION_FAIL.PROC")
+}
+
+# Bit 6:7 REGULATION_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-REGULATION_FAIL"){
+  field(DESC, "REGULATION_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB6_.B7")
+  field(ZNAM, "OK")
+  field(ONAM, "REGULATION_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Byte 7:
+record(mbbiDirect,"$(P)CAN${CH_ID}-StatB7_"){
+  field(DESC, "mbbiDirect")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-PDO01-Array.[7] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-INT_FAIL.PROC")
+}
+
+# Bit 7:0 INT_FAIL
+record(bi,"$(P)CAN${CH_ID}-Stat-INT_FAIL"){
+  field(DESC, "INT_FAIL")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB7_.B0")
+  field(ZNAM, "OK")
+  field(ONAM, "INT_FAIL")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-INT_BUSY.PROC")
+}
+
+# Bit 7:1 INT_BUSY
+record(bi,"$(P)CAN${CH_ID}-Stat-INT_BUSY"){
+  field(DESC, "INT_BUSY")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB7_.B1")
+  field(ZNAM, "NOT_INT_BUSY")
+  field(ONAM, "INT_BUSY")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-BIAS_FAIL_BIT0.PROC")
+}
+
+# Bit 7:2 BIAS_FAIL_BIT0
+record(bi,"$(P)CAN${CH_ID}-Stat-BIAS_FAIL_BIT0"){
+  field(DESC, "BIAS_FAIL_BIT0")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB7_.B2")
+  field(ZNAM, "OK")
+  field(ONAM, "BIAS_FAIL_BIT0")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-BIAS_FAIL_BIT1.PROC")
+}
+
+# Bit 7:3 BIAS_FAIL_BIT1
+record(bi,"$(P)CAN${CH_ID}-Stat-BIAS_FAIL_BIT1"){
+  field(DESC, "BIAS_FAIL_BIT1")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB7_.B3")
+  field(ZNAM, "OK")
+  field(ONAM, "BIAS_FAIL_BIT1")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-BIAS_ADJ.PROC")
+}
+
+# Bit 7:4 BIAS_ADJ
+record(bi,"$(P)CAN${CH_ID}-Stat-BIAS_ADJ"){
+  field(DESC, "BIAS_ADJ")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB7_.B4")
+  field(ZNAM, "NOT_BIAS_ADJ")
+  field(ONAM, "BIAS_ADJ")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-SD_MON.PROC")
+}
+
+# Bit 7:5 SD_MON
+record(bi,"$(P)CAN${CH_ID}-Stat-SD_MON"){
+  field(DESC, "SD_MON")
+  field(PINI, "$(PINI=1)")
+  field(INP,  "$(P)CAN${CH_ID}-StatB7_.B5")
+  field(ZNAM, "NOT_SD_MON")
+  field(ONAM, "SD_MON")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "NO_ALARM")
+}
+
+# Bit 7:6..7:7 Reserved
