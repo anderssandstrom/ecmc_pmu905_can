@@ -1,0 +1,54 @@
+# Byte 0
+# B0:1 resets all pmu on canbus network
+
+record(bo,"$(P)CAN${CH_ID}-Ctrl-ResetAll") {  
+  field(DESC, "Reset All pmu905")
+  field(VAL,  "0")  
+  field(0NAM, "reset")
+  field(ZNAM, "no reset")
+  field(OUT,  "$(P)CAN${CH_ID}-ResetB0_.B1")  
+  field(FLNK, "$(P)CAN${CH_ID}-ResetB0_.PROC")
+}
+
+record(mbboDirect,"$(P)CAN${CH_ID}-ResetB0_"){
+  info(asyn:READBACK,"1")
+  field(DESC, "Basic Config B0")
+  field(PINI, "1")
+  field(VAL,  "0")  
+  field(FLNK, "$(P)CAN${CH_ID}-ResetPackArray_.PROC")
+}
+
+# Byte 1..7 not used or reserved set these to 0
+
+record(aSub,   "$(P)CAN${CH_ID}-ResetPackArray_") {
+  field(INAM,  "ecmcByteToArrayInit")
+  field(SNAM,  "ecmcByteToArray")
+  field(FTA,   "UCHAR")
+  field(NOA,   "1")
+  field(INPA,  "$(P)CAN${CH_ID}-ResetB0_.VAL")          # Byte 0
+  field(FTB,   "UCHAR")
+  field(NOB,   "1")
+  field(INPB,  "0")                                     # Byte 1
+  field(FTC,   "UCHAR")
+  field(NOC,   "1")
+  field(INPC,  "0")                                     # Byte 2
+  field(FTD,   "UCHAR")
+  field(NOD,   "1")
+  field(INPD,  "0")                                     # Byte 3
+  field(FTE,   "UCHAR")
+  field(NOE,   "1")
+  field(INPE,  "0")                                     # Byte 4
+  field(FTF,   "UCHAR")
+  field(NOF,   "1")
+  field(INPF,  "0")                                     # Byte 5
+  field(FTG,   "UCHAR")
+  field(NOG,   "1")
+  field(INPG,  "0")                                     # Byte 6
+  field(FTH,   "UCHAR")
+  field(NOH,   "1")
+  field(INPH,  "0")                                     # Byte 7
+  field(FTVA,  "UCHAR")
+  field(OUTA,  "$(P)CAN${CH_ID}-${PV_SUFFIX}")
+  field(NOVA,  "8")                                     # 8 bytes (0..7 corresponds to input A..H)
+  field(FLNK,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.PROC") # Send the data
+}
