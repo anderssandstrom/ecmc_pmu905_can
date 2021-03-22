@@ -1,6 +1,6 @@
-REQMOD:mcag-trgt-muts--23079:MODULES
-REQMOD:mcag-trgt-muts--23079:VERSIONS
-REQMOD:mcag-trgt-muts--23079:MOD_VER
+REQMOD:mcag-trgt-muts--27051:MODULES
+REQMOD:mcag-trgt-muts--27051:VERSIONS
+REQMOD:mcag-trgt-muts--27051:MOD_VER
 IOC_TEST:CAN00-PDO01-Reset_
 IOC_TEST:CAN03-PDO01-Status_
 IOC_TEST:CAN03-SDO01-AnalogValues_
