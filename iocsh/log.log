@@ -1,0 +1,513 @@
+registerChannelProviderLocal firstTime true
+#
+# Start at "2021-W12-Mar22-1325-32-CET"
+#
+# Version information:
+# European Spallation Source ERIC : iocsh.bash (3.4.0-PID-14776)
+#
+# --->--> snip -->--> 
+# Please Use Version and other environment variables
+# in order to report or debug this shell
+#
+# HOSTDISPLAY=""
+# WINDOWID="35653034"
+# PWD="/home/dev/sources/ecmc_pmu905_can/iocsh"
+# USER="dev"
+# LOGNAME="dev"
+# EPICS_HOST_ARCH="linux-x86_64"
+# EPICS_BASE="/home/dev/epics/base-7.0.4"
+# E3_REQUIRE_NAME="require"
+# E3_REQUIRE_VERSION="3.4.0"
+# E3_REQUIRE_LOCATION="/home/dev/epics/base-7.0.4/require/3.4.0"
+# E3_REQUIRE_BIN="/home/dev/epics/base-7.0.4/require/3.4.0/bin"
+# E3_REQUIRE_DB="/home/dev/epics/base-7.0.4/require/3.4.0/db"
+# E3_REQUIRE_DBD="/home/dev/epics/base-7.0.4/require/3.4.0/dbd"
+# E3_REQUIRE_INC="/home/dev/epics/base-7.0.4/require/3.4.0/include"
+# E3_REQUIRE_LIB="/home/dev/epics/base-7.0.4/require/3.4.0/lib"
+# EPICS_DRIVER_PATH="/home/dev/epics/base-7.0.4/require/3.4.0/siteMods:/home/dev/epics/base-7.0.4/require/3.4.0/siteApps"
+# EPICS_CA_AUTO_ADDR_LIST=""
+# EPICS_CA_ADDR_LIST=""
+# PATH="/home/dev/epics/base-7.0.4/require/3.4.0/bin:/home/dev/epics/base-7.0.4/bin/linux-x86_64:/opt/conda/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/dev/.local/bin:/home/dev/bin"
+# --->--> snip -->--> 
+#
+# Set REQUIRE_IOC for its internal PVs
+epicsEnvSet REQUIRE_IOC "REQMOD:mcag-trgt-muts--14776"
+#
+# Enable an exit subroutine for sotfioc
+dbLoadRecords "/home/dev/epics/base-7.0.4/db/softIocExit.db" "IOC=REQMOD:mcag-trgt-muts--14776"
+#
+# Set E3_IOCSH_TOP for the absolute path where iocsh.bash is executed.
+epicsEnvSet E3_IOCSH_TOP "/home/dev/sources/ecmc_pmu905_can/iocsh"
+#
+# 
+# Load require module, which has the version 3.4.0
+# 
+dlload /home/dev/epics/base-7.0.4/require/3.4.0/lib/linux-x86_64/librequire.so
+dbLoadDatabase /home/dev/epics/base-7.0.4/require/3.4.0/dbd/require.dbd
+require_registerRecordDeviceDriver
+Loading module info records for require
+# 
+# Set E3_CMD_TOP for the absolute path where pmu905.script exists
+epicsEnvSet E3_CMD_TOP "/home/dev/sources/ecmc_pmu905_can/iocsh"
+#
+iocshLoad 'pmu905.script',''
+##############################################################################
+##
+## Example of a startup script for one pmu905 unit.
+## The e3-ecmc_plugin_socketcan plugin is used to inteface to canbus:
+##    https://github.com/anderssandstrom/e3-ecmc_plugin_socketcan
+##
+## Initiation:
+epicsEnvSet("IOC" ,"IOC_TEST")
+epicsEnvSet("ECMCCFG_INIT" ,"")  #Only run startup once (auto at PSI, need call at ESS), variable set to "#" in startup.cmd
+epicsEnvSet("SCRIPTEXEC" ,"iocshLoad")
+require ecmccfg 6.3.2
+Module ecmccfg version 6.3.2 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/lib/linux-x86_64/libecmccfg.so
+Loaded ecmccfg version 6.3.2
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/dbd/ecmccfg.dbd
+Calling function ecmccfg_registerRecordDeviceDriver
+Loading module info records for ecmccfg
+require calc 3.7.3
+Module calc version 3.7.3 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/calc/3.7.3/
+Module calc depends on sequencer 2.2.7
+Module sequencer version 2.2.7 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/sequencer/2.2.7/
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/sequencer/2.2.7/lib/linux-x86_64/libsequencer.so
+Loaded sequencer version 2.2.7
+sequencer has no dbd file
+Loading module info records for sequencer
+Module calc depends on sscan 2.11.3
+Module sscan version 2.11.3 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/sscan/2.11.3/
+Module sscan depends on sequencer 2.2.7
+Module sequencer version 2.2.7 already loaded
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/sscan/2.11.3/lib/linux-x86_64/libsscan.so
+Loaded sscan version 2.11.3
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/sscan/2.11.3/dbd/sscan.dbd
+Calling function sscan_registerRecordDeviceDriver
+Loading module info records for sscan
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/calc/3.7.3/lib/linux-x86_64/libcalc.so
+Loaded calc version 3.7.3
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/calc/3.7.3/dbd/calc.dbd
+Calling function calc_registerRecordDeviceDriver
+Loading module info records for calc
+require ecmc_plugin_socketcan master
+Module ecmc_plugin_socketcan version master found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc_plugin_socketcan/master/
+Module ecmc_plugin_socketcan depends on asyn 4.41.0
+Module asyn version 4.41.0 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/asyn/4.41.0/
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/asyn/4.41.0/lib/linux-x86_64/libasyn.so
+Loaded asyn version 4.41.0
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/asyn/4.41.0/dbd/asyn.dbd
+Calling function asyn_registerRecordDeviceDriver
+Loading module info records for asyn
+Module ecmc_plugin_socketcan depends on ecmc 6.3.2
+Module ecmc version 6.3.2 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc/6.3.2/
+Module ecmc depends on asyn 4.41.0
+Module asyn version 4.41.0 already loaded
+Module ecmc depends on exprtk 1.2.1
+Module exprtk version 1.2.1 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/exprtk/1.2.1/
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/exprtk/1.2.1/lib/linux-x86_64/libexprtk.so
+Loaded exprtk version 1.2.1
+exprtk has no dbd file
+Loading module info records for exprtk
+Module ecmc depends on motor 7.0.4
+Module motor version 7.0.4 found in /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/motor/7.0.4/
+Module motor depends on asyn 4.41.0
+Module asyn version 4.41.0 already loaded
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/motor/7.0.4/lib/linux-x86_64/libmotor.so
+Loaded motor version 7.0.4
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/motor/7.0.4/dbd/motor.dbd
+Calling function motor_registerRecordDeviceDriver
+Loading module info records for motor
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc/6.3.2/lib/linux-x86_64/libecmc.so
+Loaded ecmc version 6.3.2
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc/6.3.2/dbd/ecmc.dbd
+Calling function ecmc_registerRecordDeviceDriver
+Loading module info records for ecmc
+Loading library /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc_plugin_socketcan/master/lib/linux-x86_64/libecmc_plugin_socketcan.so
+Loaded ecmc_plugin_socketcan version master
+Loading dbd file /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc_plugin_socketcan/master/dbd/ecmc_plugin_socketcan.dbd
+Calling function ecmc_plugin_socketcan_registerRecordDeviceDriver
+Loading module info records for ecmc_plugin_socketcan
+# run module startup.cmd (only needed at ESS  PSI auto call at require)
+iocshLoad /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/startup.cmd, "IOC=IOC_TEST,ECMC_VER=6.3.2,MASTER_ID=-1"
+#==============================================================================
+# startup.cmd
+on error halt
+require ecmc        "6.3.2"
+Module ecmc version 6.3.2 already loaded
+ecmcEpicsEnvSetCalcTernary(ECMC_EXE_CMD, "'ecmcMotorRecord'='EthercatMC'", "require  EthercatMC 3.0.2 # Using EthercatMC motor record support.","# Using ecmcMotorRecord motor record support.")
+# Using ecmcMotorRecord motor record support.
+epicsEnvUnset(ECMC_EXE_CMD)
+epicsEnvSet("ECMC_CONFIG_ROOT",     "/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/")
+epicsEnvSet("ECMC_CONFIG_DB",       "/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/db/")
+epicsEnvSet("SCRIPTEXEC",           "iocshLoad")
+epicsEnvSet("SM_PREFIX",            "IOC_TEST:")    # colon added since IOC is _not_ PREFIX
+epicsEnvSet("ECMC_PROC_HOOK",       "")
+ecmcFileExist("/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/initAll.cmd",1)
+iocshLoad "/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/initAll.cmd"
+#==============================================================================
+# initAll.cmd
+ecmcFileExist("/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/init.cmd",1)
+iocshLoad /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/init.cmd
+#==============================================================================
+# init.cmd
+epicsEnvSet("ECMC_ASYN_TIMEOUT",      1)                   # Asyn timeout
+epicsEnvSet("ECMC_ASYN_ADDR",         0)                   # Asyn Address
+epicsEnvSet("ECMC_MOTOR_PORT",        "NOT SET")
+epicsEnvSet("ECMC_ASYN_PORT",         "NOT SET")
+epicsEnvSet("ECMC_PREFIX",            "NOT SET")
+epicsEnvSet("ECMC_GEN_EC_RECORDS",    "NOT SET")
+epicsEnvSet("ECMC_GEN_AX_RECORDS",    "NOT SET")
+epicsEnvSet("ECMC_EC_AXIS_HEALTH",    "NOT SET")
+epicsEnvSet("ECMC_PLC_SAMPLE_RATE_MS", "NOT SET")
+epicsEnvSet("ECMC_TSE",               -2)
+ecmcFileExist("/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/initAxis.cmd",1)
+iocshLoad "/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/initAxis.cmd"
+#==============================================================================
+# initAxis.cmd
+epicsEnvSet("ECMC_MOTOR_NAME",            "NOT SET")
+epicsEnvSet("ECMC_R",                     "NOT SET")
+epicsEnvSet("ECMC_AXIS_NO",               "NOT SET")
+epicsEnvSet("ECMC_DESC",                  "NOT SET")
+epicsEnvSet("ECMC_EGU",                   "NOT SET")       # Motor Record Unit
+epicsEnvSet("ECMC_PREC",                  "NOT SET")       # Motor Record Precision
+epicsEnvSet("ECMC_AXISCONFIG",            "NOT SET")       # Extra parameters to driver
+epicsEnvSet("ECMC_EC_AXIS_HEALTH",        "NOT SET")       # Entry for axis health output (example: ec0.s1.BO_1.0)
+epicsEnvSet("ECMC_ENC_SCALE_NUM",         "NOT SET")
+epicsEnvSet("ECMC_ENC_SCALE_DENOM",       "NOT SET")
+epicsEnvSet("ECMC_ENC_BITS",              "NOT SET")
+epicsEnvSet("ECMC_ENC_TYPE",              "NOT SET")       # Type: 0=Incremental, 1=Absolute
+epicsEnvSet("ECMC_EC_ENC_ACTPOS",         "NOT SET")       # Ethercat entry for actual position input (encoder)
+epicsEnvSet("ECMC_ENC_ABS_BITS",          "NOT SET")       # Absolute bit count (for absolute encoders) always least significant part
+epicsEnvSet("ECMC_ENC_ABS_OFFSET",        "NOT SET")       # Encoder offset in eng units (for absolute encoders)
+epicsEnvSet("ECMC_EC_ENC_LATCHPOS",       "")              # Ethercat entry for latch position (only valid for home seq 11,12)
+epicsEnvSet("ECMC_EC_ENC_LATCH_CONTROL",  "")              # Ethercat entry for latch control (only valid for home seq 11,12)
+epicsEnvSet("ECMC_EC_ENC_LATCH_STATUS",   "")              # Ethercat entry for latch status (only valid for home seq 11,12)
+epicsEnvSet("ECMC_DRV_SCALE_NUM",         "NOT SET")
+epicsEnvSet("ECMC_DRV_SCALE_DENOM",       "NOT SET")
+epicsEnvSet("ECMC_EC_DRV_CONTROL",        "NOT SET")       # Ethercat entry for control word or bit output
+epicsEnvSet("ECMC_EC_DRV_STATUS",         "NOT SET")       # Ethercat entry for status word or bit input
+epicsEnvSet("ECMC_EC_DRV_VELOCITY",       "NOT SET")       # Ethercat entry for velocity setpoint output
+epicsEnvSet("ECMC_EC_DRV_BRAKE",          "NOT SET")       # Ethercat entry for brake output
+epicsEnvSet("ECMC_EC_DRV_REDUCE_TORQUE",  "NOT SET")       # Ethercat entry for reduce torque output
+epicsEnvSet("ECMC_DRV_BRAKE_OPEN_DLY_TIME",    "NOT SET")  # Brake timing parameter in cycles (default 1kHz)
+epicsEnvSet("ECMC_DRV_BRAKE_CLOSE_AHEAD_TIME", "NOT SET")  # Brake timing parameter in cycles (default 1kHz)
+epicsEnvSet("ECMC_VELO",                  "NOT SET")
+epicsEnvSet("ECMC_JOG_VEL",               "NOT SET")
+epicsEnvSet("ECMC_JAR",                   "NOT SET")       # JAR defaults to VELO/ACCL
+epicsEnvSet("ECMC_ACCL",                  "NOT SET")
+epicsEnvSet("ECMC_EMERG_DECEL",           "NOT SET")       # Emergency deceleration
+epicsEnvSet("ECMC_HOME_PROC",              "NOT SET")
+epicsEnvSet("ECMC_HOME_POS",               "NOT SET")
+epicsEnvSet("ECMC_HOME_VEL_TO",            "NOT SET")
+epicsEnvSet("ECMC_HOME_VEL_FRM",           "NOT SET")
+epicsEnvSet("ECMC_HOME_ACC",               "NOT SET")
+epicsEnvSet("ECMC_HOME_DEC",               "NOT 2021/03/22 13:25:32.131 
+ECMC Initializes.............
+2021/03/22 13:25:32.131 ESS Open Source EtherCAT Motion Control Epics Module2021/03/22 13:25:32.131 
+Mode: Configuration
+2021/03/22 13:25:32.131 OK
+2021/03/22 13:25:32.131 OK
+2021/03/22 13:25:32.131 OK
+2021/03/22 13:25:32.131 OK
+2021/03/22 13:25:32.131 OK
+2021/03/22 13:25:32.131 OK
+SET")
+epicsEnvSet("ECMC_HOME_LATCH_COUNT_OFFSET","0")
+epicsEnvSet("ECMC_CNTRL_KP",              "NOT SET")
+epicsEnvSet("ECMC_CNTRL_KI",              "NOT SET")
+epicsEnvSet("ECMC_CNTRL_KD",              "NOT SET")
+epicsEnvSet("ECMC_CNTRL_KFF",             "NOT SET")
+epicsEnvSet("ECMC_EC_MON_LOWLIM",         "NOT SET")       #  Ethercat entry for low limit switch input
+epicsEnvSet("ECMC_EC_MON_HIGHLIM",        "NOT SET")       #  Ethercat entry for high limit switch inpuit
+epicsEnvSet("ECMC_EC_MON_HOME_SWITCH",    "NOT SET")       #  Ethercat entry for home switch input
+epicsEnvSet("ECMC_EC_MON_EXT_INTERLOCK",  "NOT SET")       #  Ethercat entry for external interlock input
+epicsEnvSet("ECMC_SOFT_LOW_LIM",          "NOT SET")
+epicsEnvSet("ECMC_SOFT_HIGH_LIM",         "NOT SET")
+epicsEnvSet("ECMC_DXLM_ENABLE",           "NOT SET")
+epicsEnvSet("ECMC_MON_LAG_MON_TOL",       "NOT SET")
+epicsEnvSet("ECMC_MON_LAG_MON_TIME",      "NOT SET")
+epicsEnvSet("ECMC_MON_LAG_MON_ENA",       "NOT SET")
+epicsEnvSet("ECMC_MON_AT_TARGET_TOL",     "NOT SET")
+epicsEnvSet("ECMC_MON_AT_TARGET_TIME",    "NOT SET")
+epicsEnvSet("ECMC_MON_AT_TARGET_ENA",     "NOT SET")
+epicsEnvSet("ECMC_MON_VELO_MAX",          "NOT SET")
+epicsEnvSet("ECMC_MON_VELO_MAX_TRAJ_TIME","NOT SET")
+epicsEnvSet("ECMC_MON_VELO_MAX_DRV_TIME", "NOT SET")
+epicsEnvSet("ECMC_MON_VELO_MAX_ENA",      "NOT SET")
+epicsEnvSet("ECMC_EGU",               "mm")
+epicsEnvSet("ECMC_PREC",              3)
+epicsEnvSet("ECMC_AXISFIELDINIT",     "")                  # Extra field init to motor record
+epicsEnvSet("ECMC_AXISCONFIG",        "")                  # Extra parameters to driver
+############################################################
+############# ASYN Configuration:
+epicsEnvSet("ECMC_MOTOR_PORT"     "MCU1")
+epicsEnvSet("ECMC_ASYN_PORT"      "MC_CPU1")
+epicsEnvSet("ECMC_PREFIX"         "IOC_TEST:")
+ecmcAsynPortDriverConfigure(MC_CPU1,1000,0,0,100)
+ecmcAsynPortDriverConfigure: portName = MC_CPU1, paramTableSize = 1000, disableAutoConnect = 0, priority = 0, defaultSampleRateMS = 100.000000
+asynOctetSetOutputEos(MC_CPU1, -1, ";\n")
+asynOctetSetInputEos(MC_CPU1, -1, ";\n")
+asynSetTraceMask(MC_CPU1, -1, 0x41)
+asynSetTraceIOMask(MC_CPU1, -1, 6)
+asynSetTraceInfoMask(MC_CPU1, -1, 1)
+ecmcMotorRecordCreateController(MCU1, MC_CPU1, "64", 200, 1000, "")
+############################################################
+############# Misc settings:
+# Disable function call trace printouts
+ecmcConfigOrDie "Cfg.SetEnableFuncCallDiag(0)"
+# Disable on change printouts from objects (enable for easy logging)
+ecmcConfigOrDie "Cfg.SetTraceMaskBit(15,0)"
+# Choose to generate EPICS-records for EtherCAT-entries
+# (For records use ECMC_GEN_EC_RECORDS="-records" otherwise ECMC_GEN_EC_RECORDS="")
+epicsEnvSet("ECMC_GEN_EC_RECORDS",          "-records")
+# Choose to generate EPICS-records for ax-entries (PosAct, SetPos,..)
+# (For records use ECMC_GEN_AX_RECORDS="-records" otherwise ECMC_GEN_AX_RECORDS="")
+epicsEnvSet("ECMC_GEN_AX_RECORDS",          "-records")
+# Update records in 10ms (100Hz)
+epicsEnvSet("ECMC_SAMPLE_RATE_MS",       "10")
+# Set EtherCAT frequency (defaults to 1000)
+ecmcConfigOrDie "Cfg.SetSampleRate(1000)"
+epicsEnvSet("ECMC_EC_SAMPLE_RATE" ,1000)
+ecmcEpicsEnvSetCalcTernary(ECMC_MASTER_CMD, "-1>=0", "","#- ")
+epicsEnvSet("ECMC_MASTER_ID" ,-1)
+ecmcFileExist("/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/setDiagnostics.cmd",1)
+iocshLoad /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/setDiagnostics.cmd
+#==============================================================================
+# setDiagnostics.cmd
+ecmcConfigOrDie "Cfg.EcSetDiagnostics(1)"
+ecmcConfigOrDie "Cfg.EcEnablePrintouts(0)"
+ecmcConfigOrDie "Cfg.EcSetDomainFailedCyclesLimit(100)"
+epicsEnvSet("ECMCCFG_INIT" ,"#")
+##############################################################################
+## Configure hardware:
+# No EtherCAT hardware (in this example)..
+##############################################################################
+## Load plugin:
+epicsEnvSet(ECMC_PLUGIN_FILNAME,"/home/dev/epics/base-7.0.4/require/2021/03/22 13:25:32.132 OK
+2021/03/22 13:25:32.133 OK
+3.4.0/siteMods/ecmc_plugin_socketcan/master/lib/linux-x86_64/libecmc_plugin_socketcan.so")
+epicsEnvSet(ECMC_PLUGIN_CONFIG,"IF=can0;DBG_PRINT=0;") # Only one option implemented in this plugin
+iocshLoad /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmccfg/6.3.2/loadPlugin.cmd, "PLUGIN_ID=0,FILE=/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc_plugin_socketcan/master/lib/linux-x86_64/libecmc_plugin_socketcan.so,CONFIG='IF=can0;DBG_PRINT=0;', REPORT=1"
+#==============================================================================
+# loadPlugin.cmd
+ecmcConfigOrDie "Cfg.LoadPlugin(0,/home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc_plugin_socketcan/master/lib/linux-x86_64/libecmc_plugin_socketcan.so,IF=can0;DBG_PRINT=0;)"
+can0 at index 4
+ecmcEpicsEnvSetCalcTernary("ECMC_PLUGIN_REPORT", "1>0","","#")
+ecmcConfigOrDie "Cfg.ReportPlugin(0)"
+Plugin info: 
+  Index                = 0
+  Name                 = ecmcPlugin_socketcan
+  Description          = SocketCAN plugin for use with ecmc.
+  Option description   = 
+    DBG_PRINT=<1/0>    : Enables/disables printouts from plugin, default = disabled (=0).
+    IF=<if name>         : Sets can interface (example: can0, vcan0..).
+    CONNECT=<1/0>        : Auto connect to if at startup, default = autoconnect (=1).
+
+  Filename             = /home/dev/epics/base-7.0.4/require/3.4.0/siteMods/ecmc_plugin_socketcan/master/lib/linux-x86_64/libecmc_plugin_socketcan.so
+  Config string        = IF=can0;DBG_PRINT=0;
+  Version              = 2
+  Interface version    = 65536 (ecmc = 65536)
+     max plc funcs     = 64
+     max plc func args = 10
+     max plc consts    = 64
+  Construct func       = @0x7f91a93338e0
+  Enter realtime func  = @0x7f91a93337f0
+  Exit realtime func   = @0x7f91a9333800
+  Realtime func        = @0x7f91a9333840
+  Destruct func        = @0x7f91a9333810
+  dlhandle             = @0x2552550
+  Plc functions:
+    funcs[00]:
+      Name       = "can_connect();"
+      Desc       = double can_connect() : Connect to can interface (from config str).
+      Arg count  = 0
+      func       = @0x7f91a9333850
+    funcs[01]:
+      Name       = "can_connected();"
+      Desc       = double can_connected() : Connected to can interface.
+      Arg count  = 0
+      func       = @0x7f91a9333870
+    funcs[02]:
+      Name       = "can_add_write(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);"
+      Desc       = double can_add_write(canId,len,data0..data7) : Add write frame to can interface output buffer.
+      Arg count  = 10
+      func       = @0x7f91a93338b0
+    funcs[03]:
+      Name       = "can_last_writes_error();"
+      Desc       = double can_last_writes_error() : get error from last writes.
+      Arg count  = 0
+      func       = @0x7f91a9333890
+  Plc constants:
+
+epicsEnvUnset(ECMC_PLUGIN_REPORT);
+epicsEnvUnset(ECMC_PLUGIN_FILNAME)
+epicsEnvUnset(ECMC_PLUGIN_CONFIG)
+##############################################################################
+## Communication diag
+dbLoadRecords(ecmcPluginSocketCAN_Com.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1")
+##############################################################################
+############# Configure CANOpen plugin:
+# Add master device:
+#   ecmcCANOpenAddMaster -h
+#      Use ecmcCANOpenAddMaster(<name>, <node id>,....)
+#                <name>                     : Name of master device.
+#                <node id>                  : CANOpen node id of master.
+#                <LSS sample time ms>       : Sample time for LSS.
+#                <Sync sample time ms>      : Sample time for SYNC.
+#                <Heartbeat sample time ms> : Sample time for Heartbeat.
+#
+ecmcCANOpenAddMaster("ecmcCANOpenMaster",0,1000,1000,1000)
+dbLoadRecords(ecmcPluginSocketCAN_Dev.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,CH_ID=00,DEV_ID=0")
+# Send reset to all amplifiers from master on COB_ID 200
+ecmcCANOpenAddPDO("reset",0,0x300,1,8,100000,0)  # READ
+dbLoadRecords(ecmcPluginSocketCAN_PDO_output.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,T_SMP_MS=10,TSE=-2,CH_ID=00,DEV_ID=0,suffix=PDO01-Reset_,source=reset,NELM=8")2021/03/22 13:25:32.135 WARNING: EtherCAT master not initialized. Starting ECMC without EtherCAT support.
+2021/03/22 13:25:32.135 INFO: Locking memory
+2021/03/22 13:25:32.145 Starting up Realtime thread without EtherCAT support.
+2021/03/22 13:25:33.145 OK
+2021/03/22 13:25:33.146 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAtIocBuild (0). Allow callbacks: true.
+Starting iocInit
+2021/03/22 13:25:33.146 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAtBeginning (1). Allow callbacks: true.
+2021/03/22 13:25:33.147 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterCallbackInit (2). Allow callbacks: true.
+2021/03/22 13:25:33.148 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterCaLinkInit (3). Allow callbacks: true.
+2021/03/22 13:25:33.148 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterInitDrvSup (4). Allow callbacks: true.
+2021/03/22 13:25:33.148 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterInitRecSup (5). Allow callbacks: true.
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterInitDevSup (6). Allow callbacks: true.
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.dev0.nmtstate linked to record (asyn reason 1).
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.dev3.nmtstate linked to record (asyn reason 2).
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.dev0.pdo.reset linked to record (asyn reason 3).
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.dev3.pdo.status linked to record (asyn reason 4).
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.dev3.sdo.analogValues linked to record (asyn reason 5).
+2021/03/22 13:25:33.149 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.dev3.sdo.basicConfig linked to record (asyn reason 6).
+
+dbLoadRecords(../db/pmu905Reset.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,CH_ID=00,PV_SUFFIX=PDO01-Reset_")
+# Add pmu905 device:
+#    ecmcCANOpenAddDevice -h
+#      Use ecmcCANOpenAddDevice(<name>, <node id>)
+#          <name>                     : Name of device.
+#          <node id>                  : CANOpen node id of device.
+#          <NMT Heartbeat timeout ms> : Timeout for NMT Heartbeat.\n");
+#
+ecmcCANOpenAddDevice("pmu905",3,5000)
+dbLoadRecords(ecmcPluginSocketCAN_Dev.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,CH_ID=03,DEV_ID=3")
+# Add PDO:
+#     ecmcCANOpenAddPDO -h
+#       Use "ecmcCANOpenAddPDO(<name>, <node id>
+#           <name>            : Name of master device.
+#           <node id>         : CANOpen node id of device/master.
+#           <cob id>          : CANOpen cob id of PDO.
+#           <dir>             : Direction 1=write and 2=read.
+#           <ODSize>          : Size of PDO (max 8 bytes).
+#           <readTimeoutMs>   : Readtimeout in ms.
+#           <writeCycleMs>    : Cycle time for write (if <= 0 then only write on change).
+ecmcCANOpenAddPDO("status",3,0x183,2,8,100000,0)  # READ
+dbLoadRecords(ecmcPluginSocketCAN_PDO_input.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,T_SMP_MS=10,TSE=-2,CH_ID=03,DEV_ID=3,suffix=PDO01-Status_,source=status,NELM=8")
+dbLoadRecords(../db/pmu905Status.template, "P=IOC_TEST:,CH_ID=03,PV_SUFFIX=PDO01-Status_")
+# Add SDO:
+#     ecmcCANOpenAddSDO -h
+#        Use ecmcCANOpenAddSDO(<name>, <node id>,.....)
+#           <name>            : Name of master device.
+#           <node id>         : CANOpen node id of device/master.
+#           <cob id tx>       : CANOpen cob id of Tx of slave SDO.
+#           <cob id rx>       : CANOpen cob id of Rx of slave SDO.
+#           <dir>             : Direction 1=write and 2=read.
+#           <ODIndex>         : OD index of SDO.
+#           <ODSubIndex>      : OD sub index of SDO.
+#           <ODSize>          : OS Size.
+#           <readTimeoutMs>   : Readtimeout in ms.
+#
+ecmcCANOpenAddSDO("analogValues",3,0x583,0x603,2,0x2640,0x0,56,7000) # READ
+dbLoadRecords(ecmcPluginSocketCAN_SDO_input.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,T_SMP_MS=10,TSE=-2,CH_ID=03,DEV_ID=3,suffix=SDO01-AnalogValues_,source=analogValues,DTYP=asynInt16ArrayIn,FTVL=SHORT,NELM=28")
+dbLoadRecords(../db/pmu905AnalogValues.template, "P=IOC_TEST:,CH_ID=03,PV_SUFFIX=SDO01-AnalogValues_")
+ecmcCANOpenAddSDO("basicConfig",3,0x583,0x603,1,0x2690,0x1,7,0)      # WRITE
+dbLoadRecords(ecmcPluginSocketCAN_SDO_output.template, "P=IOC_TEST:,PORT=MC_CPU1,ADDR=0,TIMEOUT=1,T_SMP_MS=10,TSE=-2,CH_ID=03,DEV_ID=3,suffix=SDO02-BasicConfig_,source=basicConfig,DTYP=asynInt8ArrayOut,FTVL=UCHAR,NELM=7")
+dbLoadRecords(../db/pmu905BasicConfig.template, "P=IOC_TEST:,CH_ID=03,PV_SUFFIX=SDO02-BasicConfig_")
+##############################################################################
+############# Go to realtime:
+ecmcConfigOrDie "Cfg.SetAppMode(1)"
+iocInit()
+############################################################################
+## EPICS R7.0.4-E3-7.0.4-patch
+## Rev. 2021-01-19T11:34+0100
+############################################################################
+ecmcByteToArrayInit aSubRecord: IOC_TEST:CAN00-ResetPackArray_
+ecmcByteToArray: Bytes to me merged 8
+ecmcByteToArrayInit aSubRecord: IOC_TEST:CAN03-BasicConfigPackArray_
+2021/03/22 13:25:33.150 ecmcAsynPortDriver:drvUserCreate: Parameter plugin.can.com.error linked to record (asyn reason 7).
+2021/03/22 13:25:33.153 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterInitDatabase (7). Allow callbacks: true.
+2021/03/22 13:25:33.153 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterFinishDevSup (8). Allow callbacks: true.
+2021/03/22 13:25:33.659 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterScanInit (9). Allow callbacks: true.
+2021/03/22 13:25:33.659 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterInitialProcess (10). Allow callbacks: true.
+2021/03/22 13:25:33.660 ecmcAsynPortDriver:getEpicsState: EPICS state: Unknown state (11). Allow callbacks: true.
+2021/03/22 13:25:33.660 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterIocBuilt (12). Allow callbacks: true.
+2021/03/22 13:25:33.663 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAtIocRun (13). Allow callbacks: true.
+2021/03/22 13:25:33.663 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterDatabaseRunning (14). Allow callbacks: true.
+2021/03/22 13:25:33.663 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterInterruptAccept (28). Allow callbacks: true.
+2021/03/22 13:25:33.663 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterCaServerRunning (15). Allow callbacks: true.
+2021/03/22 13:25:33.663 ecmcAsynPortDriver:getEpicsState: EPICS state: Unknown state (29). Allow callbacks: true.
+iocRun: All initialization complete
+2021/03/22 13:25:33.669 ecmcAsynPortDriver:getEpicsState: EPICS state: initHookAfterIocRunning (16). Allow callbacks: true.
+ecmcByteToArray: Bytes to me merged 7
+dbl > pvs.log
+dbl ai > ai_pvs.log
+dbl bi > bi_pvs.log
+dbl waveform > wf_pvs.log
+dbl calc > calc_pvs.log
+dbgrep  "*_"> worker_pvs.log
+# Set the IOC Prompt String One 
+epicsEnvSet IOCSH_PS1 "mcag-trgt-muts--14776 > "
+#
+[?1034hmcag-trgt-muts--14776 > dbl ai
+IOC_TEST:CAN-Stat-ComErr
+IOC_TEST:CAN03-Stat-PWR_A
+IOC_TEST:CAN03-Stat-PWR_B
+IOC_TEST:CAN03-Stat-PWR_OUT
+IOC_TEST:CAN03-Stat-REFL_OUT
+IOC_TEST:CAN03-Stat-V_REG
+IOC_TEST:CAN03-Stat-V_TEMP
+IOC_TEST:CAN03-Stat-I_DRV
+IOC_TEST:CAN03-Stat-I_PRE
+IOC_TEST:CAN03-Stat-I_1A
+IOC_TEST:CAN03-Stat-I_2A
+IOC_TEST:CAN03-Stat-V_REFL_SAVE
+IOC_TEST:CAN03-Stat-V_PLUSMON
+IOC_TEST:CAN03-Stat-V_I_DC
+IOC_TEST:CAN03-Stat-I_1B
+IOC_TEST:CAN03-Stat-I_2B
+IOC_TEST:CAN03-Stat-V_12V_MON
+IOC_TEST:CAN03-Stat-VREF_PWR_OPV
+IOC_TEST:CAN03-Stat-V_AUX_IN
+IOC_TEST:CAN03-Stat-V_5V_ACB
+IOC_TEST:CAN03-Stat-V_3V5
+IOC_TEST:CAN03-Stat-AIR_INLET
+IOC_TEST:CAN03-Stat-AIR_OUTLET
+mcag-trgt-muts--14776 > dbgf IOC_TEST:CAN-Stat-ComErr
+DBF_DOUBLE:         0         
+mcag-trgt-muts--14776 > ecmcSocketCAN: read() fail with error Network is down.
+ecmcSocketCAN: read() fail with error No such device.
+ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+dbgf IOC_TEST:CAN-Stat-ComErrecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+
+DBF_DOUBLE:         13        
+mcag-trgt-muts--14776 > ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+dbgf IOC_TEST:CAN-Stat-ComErr
+DBF_DOUBLE:         13        
+mcag-trgt-muts--14776 > dbgf IOC_TEST:CAN-Stat-ComErrecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+
+DBF_DOUBLE:         13        
+mcag-trgt-muts--14776 > dbgf IOC_TEST:CAN-Stat-ComErr
+DBF_DOUBLE:         13        
+mcag-trgt-muts--14776 > ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+ecmcSocketCAN: write() fail with error No such device or address.
+dbgf IOC_TEST:CAN-Stat-ComErr
+DBF_DOUBLE:         13        
+mcag-trgt-muts--14776 > 

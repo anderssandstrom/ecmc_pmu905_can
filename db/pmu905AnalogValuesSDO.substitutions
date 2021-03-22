@@ -1,0 +1,15 @@
+
+# dbLoadRecords(ecmcPluginSocketCAN_SDO_error.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=03,DEV_ID=3,suffix=SDO01-AnalogValuesErr,source=analogValues")
+file "ecmcPluginSocketCAN_SDO_error.template"
+{
+  pattern {CH_ID, DEV_ID, NELM, suffix,                source       }
+          {03,    3,      28,   SDO01-AnalogValuesErr, analogValues }
+}
+
+
+# dbLoadRecords(ecmcPluginSocketCAN_SDO_input.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=03,DEV_ID=3,suffix=SDO01-AnalogValues_,source=analogValues,DTYP=asynInt16ArrayIn,FTVL=SHORT,NELM=28")
+file "ecmcPluginSocketCAN_SDO_input.template"
+{
+  pattern {CH_ID, DEV_ID, NELM, suffix,              source,        DTYP,             FTVL }
+          {03,    3,      28,   SDO01-AnalogValues_, analogValues, asynInt16ArrayIn, SHORT}
+}

@@ -1,0 +1,14 @@
+
+file "ecmcPluginSocketCAN_SDO_error.template"
+{
+  pattern {CH_ID, DEV_ID, NELM, suffix,               source      }
+          {03,    3,      28,   SDO02-BasicConfigErr, basicConfig }
+}
+
+
+# dbLoadRecords(ecmcPluginSocketCAN_SDO_output.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=03,DEV_ID=3,suffix=SDO02-BasicConfig_,source=basicConfig,DTYP=asynInt8ArrayOut,FTVL=UCHAR,NELM=7")
+file "ecmcPluginSocketCAN_SDO_output.template"
+{
+  pattern {CH_ID, DEV_ID, NELM, suffix,             source,      DTYP,             FTVL }
+          {03,    3,      7,    SDO02-BasicConfig_, basicConfig, asynInt16ArrayOut, SHORT}
+}
