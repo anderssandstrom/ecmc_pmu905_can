@@ -59,13 +59,21 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_TEMP") {
   field(EGU,  "degC")
 }
 
-# Scaling?
-# 0..33.3A
+# Scaling: NEED to verify calc?
+# 0..33.3A. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-I_DRV_") {
+  field(DESC, "Analog Values: I_DRV")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[6] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-I_DRV.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-I_DRV") {
   field(DESC, "Analog Values: I_DRV")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[6] CP")
-  field(EGU,  "A")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-I_DRV_")
+  field(EGU,  "mA")
 }
 
 # Scaling?
@@ -77,24 +85,39 @@ record(ai,"$(P)CAN${CH_ID}-Stat-I_PRE") {
   field(EGU,  "mA")
 }
 
-# Scaling?
-# 0..33.3A
+# Scaling: NEED to verify calc?
+# 0..33.3A. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-I_1A_") {
+  field(DESC, "Analog Values: I_1A")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[8] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-I_1A.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-I_1A") {
   field(DESC, "Analog Values: I_1A")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[8] CP")
-  field(EGU,  "A")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-I_1A_")
+  field(EGU,  "mA")
 }
 
-# Scaling?
-# 0..33.3A
+# Scaling: NEED to verify calc?
+# 0..33.3A. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-I_2A_") {
+  field(DESC, "Analog Values: I_2A")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[9] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-I_2A.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-I_2A") {
   field(DESC, "Analog Values: I_2A")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[9] CP")
-  field(EGU,  "A")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-I_2A_")
+  field(EGU,  "mA")
 }
-
 
 # Element 10 of analog values array is reserved.
 
@@ -108,25 +131,40 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_REFL_SAVE") {
   field(EGU,  "mV")
 }
 
-
 # Element 12 of analog values array is reserved.
 
 # Scaling?
-# 0..57.5V
+# 0..57.5V. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-V_PLUSMON_") {
+  field(DESC, "Analog Values: V_PLUSMON")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[13] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-V_PLUSMON.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-V_PLUSMON") {  
   field(DESC, "Analog Values: V_PLUSMON")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[13] CP")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-V_PLUSMON_")
   field(EGU,  "V")
 }
 
 # Scaling?
-# 0..223.492A
+# 0..223.492A. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-V_I_DC_") {
+  field(DESC, "Analog Values: V_I_DC")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[14] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-V_I_DC.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-V_I_DC") {  
   field(DESC, "Analog Values: V_I_DC")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[14] CP")
-  field(EGU,  "A")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-V_I_DC_")
+  field(EGU,  "mA")
 }
 
 
@@ -134,21 +172,37 @@ record(ai,"$(P)CAN${CH_ID}-Stat-V_I_DC") {
 
 
 # Scaling?
-# 0..33.3A
+# 0..33.3A. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-I_1B_") {
+  field(DESC, "Analog Values: I_1B")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[16] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-I_1B.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-I_1B") {
   field(DESC, "Analog Values: I_1B")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[16] CP")
-  field(EGU,  "A")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-I_1B_")
+  field(EGU,  "mA")
 }
 
 # Scaling?
-# 0..33.3A
+# 0..33.3A. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-I_2B_") {
+  field(DESC, "Analog Values: I_2B")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[17] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-I_2B.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-I_2B") {
   field(DESC, "Analog Values: I_2B")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[17] CP")
-  field(EGU,  "A")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-I_2B_")
+  field(EGU,  "mA")
 }
 
 
@@ -174,12 +228,20 @@ record(ai,"$(P)CAN${CH_ID}-Stat-VREF_PWR_OPV") {
 }
 
 # Scaling?
-# 0..36.75V
+# 0..36.75V. Two top bits are exponents (10^x)
+record(calc, "$(P)CAN${CH_ID}-Stat-V_AUX_IN_") {
+  field(DESC, "Analog Values: V_AUX_IN")
+  field(PINI, "1")
+  field(CALC, "(A & 0x3FFF)*10^((A>>14) )")
+  field(INPA, "$(P)CAN${CH_ID}-${PV_SUFFIX}.[21] CP")
+  field(FLNK, "$(P)CAN${CH_ID}-Stat-V_AUX_IN.PROC")
+}
+
 record(ai,"$(P)CAN${CH_ID}-Stat-V_AUX_IN") {
   field(DESC, "Analog Values: V_AUX_IN")
   field(PINI, "1")
-  field(INP,  "$(P)CAN${CH_ID}-${PV_SUFFIX}.[21] CP")
-  field(EGU,  "V")
+  field(INP,  "$(P)CAN${CH_ID}-Stat-V_AUX_IN_")
+  field(EGU,  "mV")
 }
 
 # Scaling?
