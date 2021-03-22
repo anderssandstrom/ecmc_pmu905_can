@@ -51,7 +51,8 @@ dbLoadRecords(ecmcPluginSocketCAN_Dev.template, "P=${ECMC_PREFIX},PORT=${ECMC_AS
 
 # Send reset to all amplifiers from master on COB_ID 200
 ecmcCANOpenAddPDO("reset",0,0x300,1,8,100000,0)  # READ
-dbLoadRecords(ecmcPluginSocketCAN_PDO_output.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=00,DEV_ID=0,suffix=PDO01-Reset_,source=reset,NELM=8")
+dbLoadRecords(ecmcPluginSocketCAN_PDO_output.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=00,DEV_ID=0,suffix=PDO01-Reset_,  source=reset,NELM=8")
+dbLoadRecords(ecmcPluginSocketCAN_PDO_error.template,  "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=00,DEV_ID=0,suffix=PDO01-ResetErr,source=reset")
 dbLoadRecords(../db/pmu905Reset.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,CH_ID=00,PV_SUFFIX=PDO01-Reset_")
 
 # Add pmu905 device:
@@ -101,8 +102,6 @@ ecmcCANOpenAddSDO("basicConfig",3,0x583,0x603,1,0x2690,0x1,7,0)      # WRITE
 dbLoadRecords(ecmcPluginSocketCAN_SDO_output.template,"P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=03,DEV_ID=3,suffix=SDO02-BasicConfig_,  source=basicConfig,DTYP=asynInt8ArrayOut,FTVL=UCHAR,NELM=7")
 dbLoadRecords(ecmcPluginSocketCAN_SDO_error.template, "P=${ECMC_PREFIX},PORT=${ECMC_ASYN_PORT},ADDR=0,TIMEOUT=1,T_SMP_MS=${ECMC_SAMPLE_RATE_MS},TSE=${ECMC_TSE},CH_ID=03,DEV_ID=3,suffix=SDO02-BasicConfigErr,source=basicConfig")
 dbLoadRecords(../db/pmu905BasicConfig.template, "P=${ECMC_PREFIX},CH_ID=03,PV_SUFFIX=SDO02-BasicConfig_")
-
-
 
 ##############################################################################
 ############# Go to realtime:
