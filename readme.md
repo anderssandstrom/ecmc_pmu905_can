@@ -69,6 +69,8 @@ The below headings below refer to the naming of the data in this manual [PMU905 
 
 ### Basic Configuration SDO (OD 0x2690:1, 7bytes)
 
+[PMU905 Interface chapter 6.4](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
+
 These PVs control the Basic configuration of a device (in this example with nodeid 3):
 ```
 IOC_TEST:CAN03-Ctrl-PowerOn
@@ -138,7 +140,10 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 ```
 
-### Reset PDO (0x300, 8bytes)
+### Reset Faults PDO (0x300, 8bytes)
+
+[PMU905 Interface chapter 5.5](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
+
 ```
 IOC_TEST:CAN00-Ctrl-ResetAll
 ```
@@ -156,6 +161,8 @@ w 0x300 [8] 0x02 0x00 0x00 0x00 0x00 0x00 0x00 0x00
 ```
 
 ### Status PDO (0x180+nodeId, 8 bytes)
+
+[PMU905 Interface chapter 5.8](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
 
 ```
 IOC_TEST:CAN03-Stat-SortLine1
@@ -199,7 +206,10 @@ IOC_TEST:CAN03-Stat-BIAS_ADJ
 IOC_TEST:CAN03-Stat-SD_MON
 ```
 
-### Analog Values SDO (OD 0x2640:0, 56 bytes)
+### Analog Measured Values SDO (OD 0x2640:0, 56 bytes)
+
+[PMU905 Interface chapter 6.5](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
+
 ```
 IOC_TEST:CAN03-Stat-PWR_A
 IOC_TEST:CAN03-Stat-PWR_B
