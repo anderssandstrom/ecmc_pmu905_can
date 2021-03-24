@@ -205,6 +205,8 @@ IOC_TEST:CAN03-Stat-BIAS_FAIL_BIT1
 IOC_TEST:CAN03-Stat-BIAS_ADJ
 IOC_TEST:CAN03-Stat-SD_MON
 ```
+Note: Alarm state of these PV:s needs to be confirmed and added in some cases.
+
 
 ### Analog Measured Values SDO (OD 0x2640:0, 56 bytes)
 
@@ -234,8 +236,17 @@ IOC_TEST:CAN03-Stat-V_3V5
 IOC_TEST:CAN03-Stat-AIR_INLET
 IOC_TEST:CAN03-Stat-AIR_OUTLET
 ```
+Scalings are described here [PMU905 Interface chapter 4](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
 
-Note: Scalings needs to be confirmed.
+Most of the PVs have correct scalings directly from the raw SDO input integer values. However there are a few PVs that need special scalings:
+
+1. Voltages over 16383mV   : b14..15 are considered to be an exponent (value = b0..13 *10^(b14..15))
+
+2. Currents over 16383mA   : b14..15 are considered to be an exponent (value = b0..13 *10^(b14..15))
+
+3. Tempertures : the raw value is in dDegC so needs to be multiplied with a factor 10.
+
+Note: Scalings need to confirmed to be correct
 
 
 ## General Pvs for error and alarm handling
