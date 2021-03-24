@@ -61,12 +61,13 @@ cd iocsh
 iocsh.bash pmu905.script
 
 ```
+# PVs
 
-# pmu905 specific PVs
+## pmu905 specific PVs
 
 The below headings below refer to the naming of the data in this manual [PMU905 Interface](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
 
-## Basic Configuration SDO
+### Basic Configuration SDO
 
 These PVs control the Basic configuration of a device (in this example with nodeid 3):
 ```
@@ -77,7 +78,7 @@ IOC_TEST:CAN03-Ctrl-VdcCtrl
 
 These Pvs are linked to the IOC_TEST:CAN03-SDO02-BasicConfig_ waveform PV which is linked to the ecmc socketcan plugin.
 
-### Turn amplifier on
+#### Turn amplifier on
 
 Turn amplifier on:
 ```
@@ -97,7 +98,7 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 ```
 
-### Set VrefPwr
+#### Set VrefPwr
 
 Set VrefPwr to 100:
 ```
@@ -116,7 +117,7 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 ```
 
-### Set VdcCtrl
+#### Set VdcCtrl
 
 Set VdcCtrl to 5000:
 ```
@@ -137,12 +138,12 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 ```
 
-## Reset PDO
+### Reset PDO
 ```
 IOC_TEST:CAN00-Ctrl-ResetAll
 ```
 
-### Set ResetAll
+#### Set ResetAll
 
 Reset all pmu905 devcies on can network:
 ```
@@ -154,7 +155,7 @@ Output if socketcan plugin is started in DBG_MODE:
 w 0x300 [8] 0x02 0x00 0x00 0x00 0x00 0x00 0x00 0x00
 ```
 
-## Status PDO
+### Status PDO
 
 ```
 IOC_TEST:CAN03-Stat-SortLine1
@@ -198,7 +199,7 @@ IOC_TEST:CAN03-Stat-BIAS_ADJ
 IOC_TEST:CAN03-Stat-SD_MON
 ```
 
-## Analog Values SDO
+### Analog Values SDO
 ```
 IOC_TEST:CAN03-Stat-PWR_A
 IOC_TEST:CAN03-Stat-PWR_B
@@ -225,6 +226,7 @@ IOC_TEST:CAN03-Stat-AIR_OUTLET
 ```
 
 Note: Scalings needs to be confirmed.
+
 
 ## General Pvs for error and alarm handling
 
