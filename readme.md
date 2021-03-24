@@ -67,7 +67,7 @@ iocsh.bash pmu905.script
 
 The below headings below refer to the naming of the data in this manual [PMU905 Interface](doc/pmu905/PMU905_CANopen-EN_V1_01.pdf)
 
-### Basic Configuration SDO
+### Basic Configuration SDO (OD 0x2690:1, 7bytes)
 
 These PVs control the Basic configuration of a device (in this example with nodeid 3):
 ```
@@ -138,7 +138,7 @@ STATE = WRITE_IDLE  basicConfig
 All data written to slave SDO.
 ```
 
-### Reset PDO
+### Reset PDO (0x300, 8bytes)
 ```
 IOC_TEST:CAN00-Ctrl-ResetAll
 ```
@@ -155,7 +155,7 @@ Output if socketcan plugin is started in DBG_MODE:
 w 0x300 [8] 0x02 0x00 0x00 0x00 0x00 0x00 0x00 0x00
 ```
 
-### Status PDO
+### Status PDO (0x180+nodeId, 8 bytes)
 
 ```
 IOC_TEST:CAN03-Stat-SortLine1
@@ -199,7 +199,7 @@ IOC_TEST:CAN03-Stat-BIAS_ADJ
 IOC_TEST:CAN03-Stat-SD_MON
 ```
 
-### Analog Values SDO
+### Analog Values SDO (OD 0x2640:0, 56 bytes)
 ```
 IOC_TEST:CAN03-Stat-PWR_A
 IOC_TEST:CAN03-Stat-PWR_B
