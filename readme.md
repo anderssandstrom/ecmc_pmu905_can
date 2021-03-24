@@ -240,6 +240,9 @@ Note: Scalings needs to be confirmed.
 
 ## General Pvs for error and alarm handling
 
+Information about these PVs can be found in the ecmc_plugin_socketcan repo:
+https://github.com/anderssandstrom/e3-ecmc_plugin_socketcan/blob/master/README.md
+
 ### Digital
 
 ```
